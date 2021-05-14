@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         //wywołanie metody z eventami do poszczególnych fragmentów
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        //wymuszenie wyboru pierwszej zakładki
+        bottomNavigation.selectedItemId=R.id.navigation_sport_events
 
     }
 

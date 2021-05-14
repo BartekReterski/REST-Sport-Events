@@ -13,6 +13,6 @@ class ScheduleFragment :Fragment(){
         inflater.inflate(R.layout.schedule_layout, container, false)
 
     companion object {
-        fun newInstance(): EventFragment = EventFragment()
+        fun newInstance(): ScheduleFragment=ScheduleFragment()
     }
 }
