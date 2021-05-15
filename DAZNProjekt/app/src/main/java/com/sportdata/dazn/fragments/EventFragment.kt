@@ -19,7 +19,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
-import java.util.zip.Inflater
 
 class EventFragment: Fragment() {
 
@@ -52,16 +51,22 @@ class EventFragment: Fragment() {
                 }
 
                 override fun onResponse(
-                    call: Call<List<SportEvents>>,
-                    response: Response<List<SportEvents>>
-                ) {
+                    call: Call<List<SportEvents>>, response: Response<List<SportEvents>>) {
 
                     progressBar.visibility = (View.GONE)
                     val recyclerView = view.findViewById<RecyclerView>(R.id.event_recyclerView)
                     recyclerView.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(activity)
-                        adapter = EventAdapter(response.body()!!)
+
+                        //lista eventow
+                       // val eventList: List<SportEvents> = response.body()!!
+                        val listMutable= response.body()!!.toMutableList()
+
+                        //sortowanie listy po dacie rosnąco
+                        listMutable.sortBy { it.date }
+                        adapter = EventAdapter(listMutable)
+
                     }
 
                 }

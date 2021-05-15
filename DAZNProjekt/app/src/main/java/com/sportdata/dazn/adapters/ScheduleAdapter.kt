@@ -9,31 +9,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sportdata.dazn.R
-import com.sportdata.dazn.models.SportEvents
+import com.sportdata.dazn.models.ScheduleEvents
 import com.squareup.picasso.Picasso
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class EventAdapter(val list: List<SportEvents>): RecyclerView.Adapter<SportEventViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportEventViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.event_layout_items, parent, false)
-        return SportEventViewHolder(view)
+class ScheduleAdapter(val list: List<ScheduleEvents>): RecyclerView.Adapter<SportScheduelViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportScheduelViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_layout_items, parent, false)
+        return SportScheduelViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    override fun onBindViewHolder(holder: SportEventViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SportScheduelViewHolder, position: Int) {
 
         return holder.bind(list[position])
 
     }
 }
 
-class SportEventViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
+class SportScheduelViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
 
     private val title: TextView = itemView.findViewById(R.id.textViewTitle)
     private val subtitle:TextView = itemView.findViewById(R.id.textViewSubtitle)
@@ -41,7 +41,7 @@ class SportEventViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
     private val imageEvent:ImageView=itemView.findViewById(R.id.imageView)
 
 
-    fun bind(data: SportEvents) {
+    fun bind(data: ScheduleEvents) {
 
         //przypisanie danych do struktury modelu
 
@@ -68,20 +68,12 @@ class SportEventViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
 
         //użycie biblioteki picasso do pobrania i wyświetlenia obrazka z URL oraz Intent do filmu z URL
         val imageURL=data.imageUrl
-        val videoURL=data.videoUrl
         val picasso= Picasso.get().load(imageURL).into(imageEvent)
         if(imageURL.isNullOrEmpty()){
 
             val noimage=Picasso.get().load(R.drawable.ic_launcher_foreground).into(imageEvent)
         }
 
-        itemView.setOnClickListener {
-
-            val intent= Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(Uri.parse(videoURL),"video/*")
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            itemView.context.startActivity(intent)
-        }
 
     }
 
