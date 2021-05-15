@@ -65,6 +65,7 @@ class EventFragment: Fragment() {
 
                         //sortowanie listy po dacie rosnąco
                         listMutable.sortBy { it.date }
+                        adapter?.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                         adapter = EventAdapter(listMutable)
 
                     }
