@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ScheduleFragment: Fragment() {
 
@@ -68,14 +71,26 @@ class ScheduleFragment: Fragment() {
                         layoutManager = LinearLayoutManager(activity)
 
                         //lista harmonogramu
-                       // val scheduleList: List<ScheduleEvents> = response.body()!!
                           val mutableList=response.body()!!.toMutableList()
+                          val currentDateTime= LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
 
+                        //sprawdzanie i dodawanie jedynie zdarzeń z  daty dzisiejszej
+                          val scheduleListToday= mutableListOf<ScheduleEvents>()
+                        for (scheduleEvents in mutableList) {
+                            if(scheduleEvents.date.contains(currentDateTime)){
+                               scheduleListToday.add(scheduleEvents)
+                            }
+                        }
+                        if(scheduleListToday.isEmpty()){
+
+                            Toast.makeText(activity,"No schedule events today",Toast.LENGTH_LONG).show()
+                        }
                         //sortowanie listy po dacie rosnąco
-                          mutableList.sortBy { it.date }
+                          scheduleListToday.sortBy { it.date }
+
                         //zapamiętanie pozycji recyclerview
                         adapter?.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-                        adapter = ScheduleAdapter(mutableList)
+                        adapter = ScheduleAdapter(scheduleListToday)
 
                     }
 

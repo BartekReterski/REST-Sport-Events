@@ -64,7 +64,12 @@ class SportScheduelViewHolder(itemView : View): RecyclerView.ViewHolder(itemView
         var yesterday: LocalDate?=null
         yesterday = LocalDate.now().minusDays(1L)
 
-        eventData.text=outputDate
+        val currentDateTime=LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
+
+        if(outputDate.contains(currentDateTime)){
+
+            eventData.text="Today"
+        }
 
         //użycie biblioteki picasso do pobrania i wyświetlenia obrazka z URL oraz Intent do filmu z URL
         val imageURL=data.imageUrl
