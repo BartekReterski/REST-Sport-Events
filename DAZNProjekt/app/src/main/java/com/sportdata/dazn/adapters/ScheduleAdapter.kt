@@ -48,7 +48,7 @@ class SportScheduelViewHolder(itemView : View): RecyclerView.ViewHolder(itemView
         title.text=data.title
         subtitle.text=data.subtitle
 
-        //format daty
+        //format daty oraz przypisanie skonwertowanego typu daty do elementu interfejsu
 
         val inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"    //wzorce wejściowe daty i wyjściowy taki jaki ma być na liście
         val outputPattern = "yyyy-MM-dd HH:mm"
@@ -59,16 +59,16 @@ class SportScheduelViewHolder(itemView : View): RecyclerView.ViewHolder(itemView
 
         inputDate = LocalDateTime.parse(data.date, inputFormatter)
         outputDate = outputFormatter.format(inputDate)
-        //przypisanie skonwertowanego typu daty do elementu interfejsu
 
-        var yesterday: LocalDate?=null
-        yesterday = LocalDate.now().minusDays(1L)
+        //wycięcie z formatowanej daty czasu
+        val cutTime=outputDate.chunked(10)
 
+        //pobranie aktualnej daty
         val currentDateTime=LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
 
         if(outputDate.contains(currentDateTime)){
 
-            eventData.text="Today"
+            eventData.text="Today "+cutTime[1]
         }
 
         //użycie biblioteki picasso do pobrania i wyświetlenia obrazka z URL oraz Intent do filmu z URL
