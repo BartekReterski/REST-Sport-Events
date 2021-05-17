@@ -71,7 +71,7 @@ class SportEventViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
         //pobranie aktualnej daty
         val currentDateTime=LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
 
-        //przypisanie daty i jej formatowanie w przypadku daty dzisiejsze, wczorajszej lub innej
+        //przypisanie daty i jej formatowanie w przypadku daty dzisiejsze, wczorajszej
         if(outputDate.contains(currentDateTime)){
 
             eventData.text="Today "+cutTime[1]

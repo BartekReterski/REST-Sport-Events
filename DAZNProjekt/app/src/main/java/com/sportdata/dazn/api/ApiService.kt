@@ -8,6 +8,7 @@ object ApiService {
 
     private val client = OkHttpClient.Builder().build()
 
+    //dodanie konfiguracji retrofit wraz z base url
     private val retrofit=Retrofit.Builder()
             .baseUrl("https://us-central1-dazn-sandbox.cloudfunctions.net")
             .addConverterFactory(GsonConverterFactory.create())

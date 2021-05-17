@@ -7,6 +7,7 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
+    //endpointy
     @GET("/getEvents")
     fun getSportEvents(): Call<List<SportEvents>>
 

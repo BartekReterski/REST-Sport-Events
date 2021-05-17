@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
@@ -48,7 +49,7 @@ class ScheduleFragment: Fragment() {
             override fun run() {
 
         try {
-
+            val textEmptyList= view.findViewById<TextView>(R.id.schedule_empty)
             val activity = activity as Context
             val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
@@ -81,16 +82,23 @@ class ScheduleFragment: Fragment() {
                                scheduleListToday.add(scheduleEvents)
                             }
                         }
-                        if(scheduleListToday.isEmpty()){
 
-                            Toast.makeText(activity,"No schedule events today",Toast.LENGTH_LONG).show()
-                        }
                         //sortowanie listy po dacie rosnąco
                           scheduleListToday.sortBy { it.date }
 
                         //zapamiętanie pozycji recyclerview
                         adapter?.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                         adapter = ScheduleAdapter(scheduleListToday)
+
+                        if(scheduleListToday.isEmpty()){
+
+                            textEmptyList.visibility=View.VISIBLE
+                        }
+                        if(scheduleListToday.isNotEmpty()){
+
+                            textEmptyList.visibility=View.GONE
+                        }
+
 
                     }
 
