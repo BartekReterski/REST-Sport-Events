@@ -1,4 +1,4 @@
-W aplikacji zostały obsłużone endpointy (/getSchedule oraz /getEvents) i zaprezentowane na dynamicznych listacg(RecyclerView). 
+W aplikacji zostały obsłużone endpointy (/getSchedule oraz /getEvents) i zaprezentowane na dynamicznych listach(RecyclerView). 
 
 #Lista zdarzeń sportowych(/getEvents):
 * kliknięcie na element listy powoduje przekierowanie do VideoPlayera, w którym prezentowany jest fimik z URL
