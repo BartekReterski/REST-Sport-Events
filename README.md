@@ -12,5 +12,5 @@ Lista harmonogramu zdarzeń(/getSchedule):
 
 Ponadto obie listy mają załączone zdjęcia pobierane z URL, odnoszące się do każdego elementu listu
 
-![Screenshot](https://i.postimg.cc/13qdJRN9/img1.jpg=250x250) ![Screenshot](https://i.postimg.cc/CKCQpvNX/img3.jpg=250x250) ![Screenshot](https://i.postimg.cc/R0xD8rcw/img2.jpg=250x250) 
+![Screenshot](https://i.postimg.cc/13qdJRN9/img1.jpg=250x250) ![Screenshot](https://i.postimg.cc/CKCQpvNX/img3.jpg=250x250)
 
